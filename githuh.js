@@ -2,8 +2,8 @@
 
 "use strict";
 
-const {username, password} = require("../auth.js");
-const Githuh = require("../app.js");
+const {username, password} = require("./auth.js");
+const Githuh = require("@rttomlinson/githuh_wrapper");
 
 
 /*Base Uris for API calls*/
