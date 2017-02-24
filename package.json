@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rttomlinson/assignment_githuh#readme",
   "dependencies": {
+    "@rttomlinson/githuh_wrapper": "^1.0.0",
     "request": "^2.79.0"
   },
   "bin": {
