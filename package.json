@@ -1,5 +1,5 @@
 {
-  "name": "assignment_githuh",
+  "name": "@rttomlinson/assignment_githuh",
   "version": "1.0.0",
   "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
   "main": "app.js",
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/rttomlinson/assignment_githuh/issues"
   },
-  "homepage": "https://github.com/rttomlinson/assignment_githuh#readme"
+  "homepage": "https://github.com/rttomlinson/assignment_githuh#readme",
+  "dependencies": {
+    "request": "^2.79.0",
+    "shelljs": "^0.7.6"
+  },
+  "bin": {
+    "githuh-user-repos" : "bin/githuh-repos.js"
+  }
 }
