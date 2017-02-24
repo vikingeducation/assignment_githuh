@@ -1,6 +1,6 @@
 {
   "name": "@rttomlinson/assignment_githuh",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Build a Command Line Interfacecd  for getting information on GitHub users' accounts.",
   "main": "githuh.js",
   "scripts": {
