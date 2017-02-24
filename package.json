@@ -21,6 +21,6 @@
     "shelljs": "^0.7.6"
   },
   "bin": {
-    "githuh-user-repos" : "bin/githuh-repos.js"
+    "githuh" : "bin/githuh.js"
   }
 }

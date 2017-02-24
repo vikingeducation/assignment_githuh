@@ -24,32 +24,33 @@ class Githuh {
         };
     }
     
-    userRepoLookup(name) { //and set url in options
+    userRepoLookup(name, callback) { //and set url in options
         let url = `${this.baseUri}${name}/repos`;
         this.options["url"] = url;
-        this._sendRequest(this.options);
+        this._sendRequest(this.options, callback);
 
     }
-    userStarsLookup(name) {
+    userStarsLookup(name, callback) {
         let url = `${this.baseUri}${name}/starred`;
         this.options["url"] = url;
-        this._sendRequest(this.options);
+        this._sendRequest(this.options, callback);
 
 
     }
     
-    userProfileLookup(name){
+    userProfileLookup(name, callback){
         let url = `${this.baseUri}${name}`;
         this.options["url"] = url;
-        this._sendRequest(this.options);
+        this._sendRequest(this.options, callback);
     }
     
-    _sendRequest(options) {
+    _sendRequest(options, callback) {
         request.get(options, function(error, response, body) {
             if (error) {
-                return error;
+                console.log(error);
             } else if (response.statusCode == 200) {
-                return JSON.parse(body);
+                //how to send this value back to the calling function
+                callback(JSON.parse(body));
             }
         }).auth(this.username, this.password);
 
