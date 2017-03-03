@@ -1,7 +1,7 @@
 {
   "name": "@rttomlinson/assignment_githuh",
   "version": "1.0.4",
-  "description": "Build a Command Line Interfacecd  for getting information on GitHub users' accounts.",
+  "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
   "main": "githuh.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
