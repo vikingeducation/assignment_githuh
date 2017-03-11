@@ -1,0 +1,30 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "\"Create a Command Line Interface, Githuh?, that displays statistics for a given username.\"",
+  "main": "index.js",
+  "dependencies": {
+    "babel-register": "^6.23.0",
+    "dotenv": "^4.0.0",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "githuh": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nategthomas/assignment_githuh.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nategthomas/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/nategthomas/assignment_githuh#readme"
+}
