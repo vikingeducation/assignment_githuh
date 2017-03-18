@@ -2,7 +2,7 @@
   "name": "assignment_githuh",
   "version": "1.0.0",
   "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
-  "main": "index.js",
+  "main": "githuh.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/jazairi/assignment_githuh#readme",
   "dependencies": {
+    "commander": "^2.9.0",
     "request": "^2.81.0"
+  },
+  "bin": {
+    "githuh": "./githuh.js"
   }
 }
