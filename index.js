@@ -3,7 +3,6 @@ var githuh = require('commander');
 var GithubAPI = require('./lib/GithubAPI');
 var githubApi = new GithubAPI;
 
-
 githuh
  .command('repos <user>')
  .description('Return a list of the user\'s recent repos.')
@@ -17,7 +16,6 @@ githuh
       } else {
         console.log("No repos found for " + user)
       }
-
    })
  });
 
