@@ -1,0 +1,16 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vikingeducation/assignment_githuh.git",
+  "author": "Christian Florez <florez.christian@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "githuh": "./githuh.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "global": "^4.3.2",
+    "request": "^2.81.0"
+  }
+}
