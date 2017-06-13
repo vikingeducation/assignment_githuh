@@ -1,0 +1,23 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ke2uke/assignment_githuh.git"
+  },
+  "keywords": [],
+  "author": "Luke E Summerscales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ke2uke/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/ke2uke/assignment_githuh#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
