@@ -4,7 +4,8 @@
   "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/ke2uke/assignment_githuh#readme",
   "dependencies": {
+    "commander": "^2.9.0",
     "request": "^2.81.0"
   }
 }
