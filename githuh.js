@@ -12,7 +12,7 @@ const githuh = {
     const url = `${base}${username}/repos`;
     githuh.makeRequest(url, function(results) {
       results.forEach(function(element) {
-        console.log(chalk.blue.bold(element.name) + ': ' + chalk.yellow(element.description));
+        githuh.displayProp(element.name + ': ', element.description);
       });
     })
   },
@@ -23,7 +23,7 @@ const githuh = {
     const url = `${base}${username}/starred`;
     githuh.makeRequest(url, function(results) {
       results.forEach(function(element) {
-        console.log(chalk.blue.bold(element.full_name) + ': ' + chalk.yellow(element.description));
+        githuh.displayProp(element.full_name + ': ', element.description);
       })
     })
 
@@ -31,9 +31,8 @@ const githuh = {
 
   profile: function(username) {
     // return the user's profile information:
-    // email, number of public repos, follower/following counts, etc.
 
-    let url = `${base}${username}`
+    const url = `${base}${username}`
     const props = {
       'Name: ': 'name',
       'Email: ': 'email',
@@ -49,10 +48,14 @@ const githuh = {
     githuh.makeRequest(url, function(results) {
       for (let prop in props) {
         if (results[props[prop]]) {
-          console.log(chalk.blue.bold(prop) + chalk.yellow(results[props[prop]]));
+          githuh.displayProp(prop, results[props[prop]]);
         }
       }
     })
+  },
+
+  displayProp: function(prop, value) {
+    console.log(chalk.blue.bold(prop) + chalk.yellow(value));
   },
 
   makeRequest: function(url, callback) {
