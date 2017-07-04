@@ -1,0 +1,22 @@
+{
+  "name": "githuh",
+  "version": "1.0.0",
+  "description": "GitHub API Wrapper",
+  "main": "githuh.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebopshoobop/assignment_githuh.git"
+  },
+  "author": "Will Timpson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thebopshoobop/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/thebopshoobop/assignment_githuh#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
