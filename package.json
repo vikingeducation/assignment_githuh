@@ -1,0 +1,21 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
+  "preferGlobal": "true",
+  "bin": {"githuh": "index.js"},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avonyel/assignment_githuh.git"
+  },
+  "author": "Stephanie Barker",
+  "engines": {"node": "*"},
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avonyel/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/Avonyel/assignment_githuh#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
