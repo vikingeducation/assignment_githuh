@@ -42,8 +42,6 @@ class Githuh {
 			"url": url,
 			"headers": {
 				"User-Agent": "Avonyel",
-				"username": "Avonyel",
-				"password": password
 			}
 		};
 
@@ -82,8 +80,6 @@ class Githuh {
 			"url": url,
 			"headers": {
 				"User-Agent": "Avonyel",
-				"username": "Avonyel",
-				"password": password
 			}
 		};
 
