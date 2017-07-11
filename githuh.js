@@ -6,7 +6,7 @@ var get = function(params, profile){
   switch(params) {
     case "repos":
       var uriC = 'https://api.github.com/users/'+profile+"/"+params;
-      request({uri: uriC, headers: {"user-agent": "node.js", "authorization": "token 12df60dbbbc3e182d8735e0b8c5d57abddb96837"}}, function (error, response, body) {
+      request({uri: uriC, headers: {"user-agent": "node.js", "authorization": "token {{{{OAUTH TOKEN}}}}"}}, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var JSONdata = JSON.parse(body);
         JSONdata.forEach(function(repo){
@@ -17,7 +17,7 @@ var get = function(params, profile){
       })
     case "stars":
       var uriC = 'https://api.github.com/users/'+profile+"/"+"starred";
-      request({uri: uriC, headers: {"user-agent": "node.js", "authorization": "token 12df60dbbbc3e182d8735e0b8c5d57abddb96837"}}, function (error, response, body) {
+      request({uri: uriC, headers: {"user-agent": "node.js", "authorization": "token {{{{OAUTH TOKEN}}}}"}}, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var JSONdata = JSON.parse(body);
         JSONdata.forEach(function(repo){
@@ -29,7 +29,7 @@ var get = function(params, profile){
       break;
     case "profile":
       var uriC = 'https://api.github.com/users/'+profile;
-      request({uri: uriC, headers: {"user-agent": "node.js", "authorization": "token 12df60dbbbc3e182d8735e0b8c5d57abddb96837"}}, function (error, response, body) {
+      request({uri: uriC, headers: {"user-agent": "node.js", "authorization": "token {{{{OAUTH TOKEN}}}}"}}, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var JSONdata = JSON.parse(body);
         console.log("Name: ", JSONdata.login);
