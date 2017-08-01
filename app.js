@@ -29,7 +29,7 @@ class Githuh {
 			}
 		}
 		request(options, function(error, response, body){
-			console.log(response.statusCode);
+			//console.log(response.statusCode);
 			debugger;
 			if (!error & response.statusCode === 200) {
 				callback(JSON.parse(body).results)
