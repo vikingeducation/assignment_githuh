@@ -3,7 +3,7 @@
 // require cli package
 var program = require('commander');
 
-// require api equest package
+// require api request package
 var request = require('request');
 
 // require GitHub class
