@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/lortza/assignment_githuh#readme",
   "dependencies": {
-    "commander": "^2.11.0"
+    "commander": "^2.11.0",
+    "request": "^2.81.0"
   }
 }
