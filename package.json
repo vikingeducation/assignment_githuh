@@ -10,13 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/coelacanth7/assignment_githuh.git"
   },
-  "author": "",
+  "author": "Gregory Alford",
   "license": "ISC",
+  "bin": {
+    "githuh": "./index.js"
+  },
   "bugs": {
     "url": "https://github.com/coelacanth7/assignment_githuh/issues"
   },
   "homepage": "https://github.com/coelacanth7/assignment_githuh#readme",
   "dependencies": {
-    "request": "^2.81.0"
+    "commander": "^2.11.0",
+    "request": "^2.81.0",
+    "sandbox": "^0.8.6"
   }
 }
