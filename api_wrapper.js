@@ -2,15 +2,16 @@ const request = require('request');
 
 const baseUri = "https://api.github.com/users/"
 
-
 //module
 class gitHuhModule {
+
+  //no authentication set up
   constructor(user) {
     this.user = user
   }
 
   //normal user info
-  //type is undfined
+  //type is undfined so url is shortened
   getUserProfileInfo(username, callback) {
     this._sendRequest(username, callback)
   }
@@ -28,14 +29,19 @@ class gitHuhModule {
   //sendfunction
   _sendRequest(username, callback, type) {
 
+
     var options = {
-      url: `${baseUri}${username}/${type}`,
+      //url for repos and starred
+      url: `${baseUri}${username}/${type}`, //no authentication
       method: 'GET',
-      headers: {'User-Agent': "coelacanth7"}
+      headers: {
+        'User-Agent': "coelacanth7"
+      }
     };
 
-    if (type === undefined){
-      options.url = `${baseUri}${username}`
+    //special case url for user profile info
+    if (type === undefined) {
+      options.url = `${baseUri}${username}` //no authentication
     }
 
     request(options, function(error, response, body) {
@@ -43,14 +49,15 @@ class gitHuhModule {
         callback(JSON.parse(body))
         //console.log('this is the raw data' + body)
       } else {
+        //error handling
         console.log(options.url)
-        console.log("Oh no error", error) ;
+        console.log("Oh no error", error);
         console.log(response.statusCode);
       };
     });
-  }//_sendRequest
+  } //_sendRequest
 
-}//end module
+} //end module
 
 module.exports = gitHuhModule;
 
