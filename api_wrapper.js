@@ -11,37 +11,37 @@ class gitHuhModule {
 
   //normal user info
   //type is undfined
-  getUserProfileInfo(cmdusername, callback) {
-    this._sendRequest(cmdusername, callback)
+  getUserProfileInfo(username, callback) {
+    this._sendRequest(username, callback)
   }
 
   //get info
-  getRepos(cmdusername) {
-    this._sendRequest(cmdusername, callback, repos)
+  getRepos(username, callback) {
+    this._sendRequest(username, callback, "repos")
   }
 
-  getStarred(cmdusername) {
-    this._sendRequest(username, callback, starred)
+  getStarred(username, callback) {
+    this._sendRequest(username, callback, "starred")
   }
 
 
   //sendfunction
-  _sendRequest(user, callback, type) {
+  _sendRequest(username, callback, type) {
 
     var options = {
-      url: `${baseUri}${cmdusername}/${type}`,
+      url: `${baseUri}${username}/${type}`,
       method: 'GET',
       headers: {'User-Agent': "coelacanth7"}
     };
 
     if (type === undefined){
-      options.url = `${baseUri}${cmdusername}`
+      options.url = `${baseUri}${username}`
     }
 
     request(options, function(error, response, body) {
       if (!error & response.statusCode === 200) {
-        callback(JSON.parse(body).results)
-        console.log('this is the raw data' + body)
+        callback(JSON.parse(body))
+        //console.log('this is the raw data' + body)
       } else {
         console.log(options.url)
         console.log("Oh no error", error) ;

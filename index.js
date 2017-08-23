@@ -24,23 +24,38 @@ program
   .action(function(cmd, username) {
     console.log('I am getting the %s info from %s', cmd, username )
 
-    cmdType = cmd
-    cmdusername = username
+    switch (cmd){
 
-  })
+      case "profile":
+
+        gitHuh.getUserProfileInfo(username, function(data) {
+          console.log('USER INFO:');
+          console.log("=============");
+          console.log(`USERNAME: ${data.login}`);
+          console.log(`NAME: ${data.name}`);
+          console.log(`EMAIL: ${data.email}`);
+          console.log(`FOLLOWERS: ${data.followers}`);
+          console.log(`FOLLOWING: ${data.following}`);
+          console.log(`NUMBER OF REPOS: ${data.public_repos}`);
+        });
+
+        break;
+
+      case "repos":
+
+        gitHuh.getRepos(username, function(data) {
+          console.log('LIST OF REPOS FOR ' + username);
+          console.log("=============");
+          data.forEach(function(repo){ console.log(repo.name) });
+        });
+
+        break;
+
+      case "starred":
+
+        gitHuh.get
+    }
+
+
+  })//end .action
   .parse(process.argv);
-
-//
-if (cmdType === "profile"){
-
-  gitHuh.getUserProfileInfo(cmdusername, function(data) {
-
-  setTimeout(function(){
-    console.log('this is the callbackdata ' + data);
-  }, 2000)
-
-
-});
-}
-
-//
