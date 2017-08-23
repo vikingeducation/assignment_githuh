@@ -4,7 +4,7 @@ const baseUri = "https://api.github.com/users/"
 
 
 //module
-class gitHuh {
+class gitHuhModule {
   constructor(user) {
     this.user = user
   }
@@ -41,6 +41,7 @@ class gitHuh {
     request(options, function(error, response, body) {
       if (!error & response.statusCode === 200) {
         callback(JSON.parse(body).results)
+        console.log('this is the raw data' + body)
       } else {
         console.log(options.url)
         console.log("Oh no error", error) ;
@@ -51,7 +52,7 @@ class gitHuh {
 
 }//end module
 
-module.exports = gitHuh
+module.exports = gitHuhModule;
 
 /*
 githuh repos <username> should return a list of the user's recent repos.

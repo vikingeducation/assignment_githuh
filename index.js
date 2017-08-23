@@ -9,10 +9,11 @@ var program = require('commander');
 const request = require('request');
 
 //my custom api wrapper module
-const gitHuh = require('./apiWrapper.js');
+const gitHuhModule = require('./api_wrapper');
 
 //set up new gitHuh
-const gitHuh2 = new gitHuh()
+const gitHuh = new gitHuhModule("coelacanth7")
+
 
 //cli params
 program
@@ -28,10 +29,18 @@ program
 
   })
   .parse(process.argv);
+
+//
 if (cmdType === "profile"){
-gitHuh2.getUserProfileInfo(cmdusername, function(data) {
-  console.log(data)
-})
+
+  gitHuh.getUserProfileInfo(cmdusername, function(data) {
+
+  setTimeout(function(){
+    console.log('this is the callbackdata ' + data);
+  }, 2000)
+
+
+});
 }
 
 //
