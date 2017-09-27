@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jaredjgebel/assignment_githuh#readme",
   "dependencies": {
-    "request": "^2.82.0"
+    "request": "^2.82.0",
+    "underscore": "^1.8.3"
   }
 }
