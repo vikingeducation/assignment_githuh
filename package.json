@@ -1,0 +1,31 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jenlouie/assignment_githuh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jenlouie/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/jenlouie/assignment_githuh#readme",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "lodash": "^4.17.4",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0"
+  },
+  "bin": {
+    "githuh": "./index.js"
+  }
+}
