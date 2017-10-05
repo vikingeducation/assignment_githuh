@@ -20,37 +20,48 @@ class GitHuh {
 	}
 
 	repos(user, callback) {
-		this._sendRequest(cliEntry.cliCommand, cliEntry.cliUserName, "?sort=pushed", callback);
+		this._sendRequest(callback, cliEntry.cliUserName, "repos", "?sort=pushed");
 	}
 
 	stars(user, callback) {
-
+		this._sendRequest(callback, cliEntry.cliUserName, "starred", "?sort=pushed");
 	}
 
 	profile(user, callback) {
-
+		this._sendRequest(callback, cliEntry.cliUserName);
 	}
 
-	_sendRequest(type, user, parameters, callback) {
-    const url = `${baseUri}/users/${user}/${type}${parameters}`;
-    const options = {
-    	url: url,
-    	headers: {
-    		"User-Agent": "stevenvz",
-    		"Authorization": this.apiKey
-    		}
-    	};
+	_sendRequest(callback, user, type, parameters) {
+	    let url = "";
+	    let params = parameters;
 
-    request.get(options, function(error, response, body) {
-      if (!error & response.statusCode === 200) {
-        callback(JSON.parse(response.body));
-        
-      }
-    })
-  }
+		if (params !== undefined) {
+	    	url = `${baseUri}/users/${user}/${type}${parameters}`;
+	    } else {
+	    	url = `${baseUri}/users/${user}`;
+	    }
+
+	    const options = {
+	    	url: url,
+	    	headers: {
+	    		"User-Agent": "stevenvz",
+	    		"Authorization": this.apiKey
+	    	}
+	    };
+
+	    request.get(options, function(error, response, body) {
+	      
+		    if (!error & response.statusCode === 200) {
+		    	callback(JSON.parse(response.body));
+		    } else {
+		    	console.log("ERROR. Github server responded with status code " + response.statusCode + ".");
+		    };
+
+	    });
+
+  	}
 
 } //GitHuh
-
 
 const callbacks = {
 	reposCallback: function(item) {
@@ -63,6 +74,23 @@ const callbacks = {
 		console.log(recentFive);
 	},
 
+	starsCallback: function(item) {
+		let starredArray = [];
+		item.forEach(function(element) {
+			starredArray.push(element.name);
+		});
+		console.log(cliEntry.cliUserName.toUpperCase() + "'s starred repos are ===> ");
+		console.log(starredArray);
+	},
+
+	profileCallback: function(item) {
+		if (item == false) {
+			console.log("NOT FOUND");
+		}
+		console.log(cliEntry.cliUserName.toUpperCase() + "'s profile data is ===> ");
+		console.log(item);
+	},
+
 } //callbacks
 
 const githuh = new GitHuh(key.key);
@@ -70,25 +98,9 @@ const githuh = new GitHuh(key.key);
 if (command === "repos") {
 	githuh.repos(cliEntry.cliUserName, callbacks.reposCallback);
 } else if (command === "stars") {
-	githuh.stars(cliEntry.cliUserName, callback);
+	githuh.stars(cliEntry.cliUserName, callbacks.starsCallback);
 } else if (command === "profile") {
-	githuh.profile(cliEntry.cliUserName, callback);
+	githuh.profile(cliEntry.cliUserName, callbacks.profileCallback);
 } else {
 	console.log("'" + command + "'" + " is an invalid command");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
