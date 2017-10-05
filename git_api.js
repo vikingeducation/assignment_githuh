@@ -2,6 +2,7 @@
 
 const request = require('request');
 const baseUri = "https://api.github.com";
+const key = require('./config/setup');
 
 class GitHuh {
 	constructor(apiKey) {
@@ -27,14 +28,14 @@ class GitHuh {
     	headers: {
     		"User-Agent": "stevenvz",
     		"Authorization": this.apiKey,
-    		"sort": "push" //YOUAREHERE - 'sort' doesn't work
+    		"sort": "pushed"
     		}
     	};
     console.log(options);
 
     request.get(options, function(error, response, body) {
      
-      
+      console.log(response.statusCode);
       if (!error & response.statusCode === 200) {
         
         callback(JSON.parse(response.body));
@@ -54,5 +55,5 @@ const callback = function(item) {
 	console.log(repoNameArray);
 };
 
-const githuh = new GitHuh("ca995cc2136c035290d7216b153cea3a0e47b0cd");
+const githuh = new GitHuh(key.key);
 githuh.repos("stevenvz", callback);
