@@ -1,0 +1,23 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "Jared Gebel\r 9/19/17",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaredjgebel/assignment_githuh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaredjgebel/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/jaredjgebel/assignment_githuh#readme",
+  "dependencies": {
+    "request": "^2.82.0",
+    "underscore": "^1.8.3"
+  }
+}
