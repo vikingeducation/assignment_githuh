@@ -34,53 +34,46 @@ var byDate = function(a, b) {
   }
 };
 
+// Function to retrieve recent repositories
+var getUserRepos = function(obj) {
+  var userRepos = [];
+  obj.forEach(function(obj) {
+    initDate = new Date(obj.created_at);
+    var repo = { name: obj.name, date: initDate };
+    userRepos.push(repo);
+  });
+  userRepos.sort(byDate);
+  userRepos = userRepos.slice(0, 5);
+  console.log(_.pluck(userRepos, "name"));
+};
+
+// Function to retrieve starred repositories
+var getStarRepos = function(obj) {
+  var starRepos = [];
+  obj.forEach(function(obj) {
+    starDate = new Date(obj.starred_at);
+    var repo = { name: obj.repo.name, date: starDate };
+    starRepos.push(repo);
+  });
+
+  starRepos.sort(byDate);
+  starRepos = starRepos.slice(0, 5);
+  console.log(_.pluck(starRepos, "name"));
+};
+
+// Function to retireve user profile info
+var getProfile = function(obj) {
+  console.log(`Name: ${obj.name}
+    Login: ${obj.login}
+    Number of repositories: ${obj.public_repos}
+    Location: ${obj.location}
+    Bio: ${obj.bio}`);
+};
+
 request(options, function(error, response, body) {
   if (error) throw new Error(error);
   // Parse response into object
   var obj = JSON.parse(body);
-
-  // Function to retrieve recent repositories
-  var getUserRepos = function(obj) {
-    var userRepos = [];
-    obj.forEach(function(obj) {
-      initDate = new Date(obj.created_at);
-      var repo = { name: obj.name, date: initDate };
-      userRepos.push(repo);
-    });
-    userRepos.sort(byDate);
-    userRepos = userRepos.slice(0, 5);
-    console.log(_.pluck(userRepos, "name"));
-  };
-
-  // Function to retrieve starred repositories
-  var getStarRepos = function(obj) {
-    var starRepos = [];
-    obj.forEach(function(obj) {
-      starDate = new Date(obj.starred_at);
-      var repo = { name: obj.repo.name, date: starDate };
-      starRepos.push(repo);
-    });
-
-    starRepos.sort(byDate);
-    starRepos = starRepos.slice(0, 5);
-    console.log(_.pluck(starRepos, "name"));
-  };
-
-  // Function to retireve user profile info
-  var getProfile = function(obj) {
-    var info = {
-      name: obj.name,
-      login: obj.login,
-      repoNumber: obj.public_repos,
-      location: obj.location,
-      bio: obj.bio
-    };
-    console.log(`Name: ${info.name}
-                 Login: ${info.login}
-                 Number of repositories: ${info.repoNumber}
-                 Location: ${info.location}
-                 Bio: ${info.bio}`);
-  };
 
   switch (options.section) {
     case "repos":
