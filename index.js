@@ -11,6 +11,7 @@ if (section === "stars") {
   section = "starred";
 } else if (section === "profile") {
   section = "";
+  user = process.argv[3];
 }
 
 // Options object, which gets passed to request call
@@ -66,6 +67,20 @@ request(options, function(error, response, body) {
   };
 
   // Function to retireve user profile info
+  var getProfile = function(obj) {
+    var info = {
+      name: obj.name,
+      login: obj.login,
+      repoNumber: obj.public_repos,
+      location: obj.location,
+      bio: obj.bio
+    };
+    console.log(`Name: ${info.name}
+                 Login: ${info.login}
+                 Number of repositories: ${info.repoNumber}
+                 Location: ${info.location}
+                 Bio: ${info.bio}`);
+  };
 
   switch (options.section) {
     case "repos":
