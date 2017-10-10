@@ -3,20 +3,28 @@ var _ = require("underscore");
 var keys = require("C:/Users/Jared/Modules/Cles/items");
 
 var api = "https://api.github.com/users/";
-var user = "jaredjgebel/";
-var section = "repos";
+var user = process.argv[3] + "/";
+// Section - will be 'repos', 'starred', or nothing if we're getting profile info
+var section = process.argv[2];
+// Change command line parameters to appropriate link sections if necessary
+if (section === "stars") {
+  section = "starred";
+} else if (section === "profile") {
+  section = "";
+}
 
 // Options object, which gets passed to request call
 var options = {
   method: "GET",
+  section: section,
   url: api + user + section,
   headers: {
-    accept: "application/vnd.github.v3+json",
+    accept: "application/vnd.github.v3.star+json",
     "User-Agent": keys.github
   }
 };
 
-// Callback function to be used by .sort to sort results by date
+// Callback function to be used by .sort to sort results by date (descending)
 var byDate = function(a, b) {
   if (a.date > b.date) {
     return -1;
@@ -44,17 +52,32 @@ request(options, function(error, response, body) {
   };
 
   // Function to retrieve starred repositories
-  /*
   var getStarRepos = function(obj) {
     var starRepos = [];
     obj.forEach(function(obj) {
+      starDate = new Date(obj.starred_at);
+      var repo = { name: obj.repo.name, date: starDate };
+      starRepos.push(repo);
+    });
 
-    })
+    starRepos.sort(byDate);
+    starRepos = starRepos.slice(0, 5);
+    console.log(_.pluck(starRepos, "name"));
   };
-  */
+
   // Function to retireve user profile info
 
-  getUserRepos(obj);
+  switch (options.section) {
+    case "repos":
+      getUserRepos(obj);
+      break;
+    case "starred":
+      getStarRepos(obj);
+      break;
+    case "":
+      getProfile(obj);
+      break;
+    default:
+      console.log("One of your parameters was incorrect. Please try again.");
+  }
 });
-// how parameters get passed in command line
-// process.argv;
