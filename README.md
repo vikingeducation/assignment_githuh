@@ -17,4 +17,4 @@ profile <username> returns the user's profile information (email, number of publ
 
 ## Acknowledgments
 
-It is part of the assignment created for [Viking Code School](https://www.vikingcodeschool.com/)
+This is an assignment created for [Viking Code School](https://www.vikingcodeschool.com/)

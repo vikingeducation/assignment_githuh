@@ -1,0 +1,22 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "Command Line Interface, GitHuh?, that displays statistics for a given username.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Visiona/assignment_githuh.git"
+  },
+  "engines": {
+    "node": "6.1.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Visiona/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/Visiona/assignment_githuh#readme"
+}
