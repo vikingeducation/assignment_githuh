@@ -3,7 +3,7 @@
 
 const request = require('request');
 
-const baseUri = 'https://api.github.com/users/';
+const baseUri = 'https://api.github.com/users';
 
 class GitHub {
 
@@ -12,38 +12,98 @@ class GitHub {
   }
 
   recentStars(username, callback) {
-    this._sendRequests(username)
+    this._sendRequests(username, 'starred', callback)
   }
 
   recentRepos(username, callback) {
-
+    this._sendRequests(username, 'repos', callback)
   }
 
-  recentProfile(username, callback) {
-
+  profile(username, callback) {
+    this._sendRequests(username, '', callback)
   }
 
-  recentForkedFrom(username, callback) {
-
+  followings(username, callback) {
+    this._sendRequests(username, 'followers', callback)
   }
 
-  _sendRequests(username, callback) {
+  _sendRequests(username, type, callback) {
 
-    const url = `${baseUri}/${username}`
+    var options = { method: 'GET',
+      url: `${baseUri}/${username}/${type}`,
+      headers:
+       { 'apiKey': this.apiKey,
+         'cache-control': 'no-cache',
+         'User-Agent': 'Chrome' } };
 
-    request(url, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+
+      if (response.statusCode == 200) {
         callback(JSON.parse(body))
       }
-    })
+
+    });
   }
 
 }
 
 
+var apiKey = '5f63dd5fadf0b5740575e442e5a7fe86b43db064';
 
-const gitHuh = new GitHub(API_KEY);
-gitHuh.recentStars('visiona', function(data) {
-  "use strict";
-  console.log(data);
-})
+const git = new GitHub(apiKey);
+
+git.recentStars('visiona', function(data) {
+  var stars = data;
+  console.log('---------------------------------------');
+  console.log('Here are the repos starred by the user ');
+  stars.forEach(star => {
+    console.log('Owner: ' + star["owner"]["login"]);
+    console.log('Name: ' + star["name"]);
+    console.log('Description: ' + star["description"]);
+    console.log(' ');
+  })
+
+});
+
+function parseDate(str_date) {
+  return new Date(Date.parse(str_date));
+}
+
+function sortObject(obj) {
+    return Object.keys(obj).sort().reverse().reduce(function (result, key) {
+        result[key] = obj[key];
+        return result;
+    }, {});
+}
+
+git.recentRepos('visiona', function(data) {
+  var repos = data;
+  var sortingRepos = {};
+  repos.forEach(repo => {
+    sortingRepos[ repo["updated_at"] ] = [repo["name"], repo["description"] ];
+  })
+
+  sortingRepos = sortObject(sortingRepos);
+
+  console.log('---------------------------------------');
+  console.log('Here are the recent 10 repos by the user ');
+  var i = 0;
+  for (var date in sortingRepos) {
+    console.log('Name: ' + sortingRepos[date][0]);
+    console.log('Description: ' + sortingRepos[date][1]);
+    console.log(parseDate(date));
+    console.log(' ');
+    i += 1;
+    if (i > 9) { break; }
+  }
+
+});
+//
+// git.profile('visiona', function(data) {
+//   console.log(data[0])
+// });
+//
+// git.followings('visiona', function(data) {
+//   console.log(data[0])
+// });
