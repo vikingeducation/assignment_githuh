@@ -99,11 +99,30 @@ git.recentRepos('visiona', function(data) {
   }
 
 });
-//
-// git.profile('visiona', function(data) {
-//   console.log(data[0])
-// });
-//
-// git.followings('visiona', function(data) {
-//   console.log(data[0])
-// });
+
+git.profile('visiona', function(data) {
+  var profile = data;
+  console.log('---------------------------------------');
+  console.log('Details about the user');
+  console.log('Email: ' + data["email"]);
+  console.log('Location: ' + data["location"]);
+  console.log('Number of repos: ' + data["public_repos"]);
+  console.log('Number of followers: ' + data["followers"]);
+  console.log('Number of followings: ' + data["following"]);
+  console.log(' ');
+});
+
+git.followings('visiona', function(data) {
+  var stars = data;
+  console.log('---------------------------------------');
+  console.log('Here are the repos starred by the user ');
+  followers.forEach(follower => {
+    console.log('Login: ' + followers["login"]);
+    git.profile(followers["login"], function(follower_data) {
+      console.log('Number of repos: ' + follower_data["public_repos"]);
+      console.log('Number of followers: ' + follower_data["followers"]);
+      console.log('Number of followings: ' + follower_data["following"]);
+    });
+    console.log(' ');
+  })
+});
