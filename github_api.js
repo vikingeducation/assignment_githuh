@@ -87,13 +87,13 @@ class GitHub {
   }
 
   printFollowings(username) {
-    this.followings(username, function(data) {
+    this.followings(username, (data) => {
       var followers = data;
       console.log('---------------------------------------');
       console.log('Here are the details of the followers ');
       followers.forEach(follower => {
         console.log('Login: ' + follower["login"]);
-        // printProfileDetails(follower["login"]);
+        this.printProfileDetails(follower["login"]);
         console.log(' ');
       })
     });
