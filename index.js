@@ -4,15 +4,6 @@ var fs = require('fs')
 
 var client = github.client();
 
-// var client = github.client({
-//   username: 'memyselfandhai',
-//   password: 'Nsx81717'
-// });
-
-// client.get('/users/memyselfandhai', {}, function (err, status, body, headers) {
-//   console.log(body); //json object
-// });
-
 var ghme           = client.me();
 var ghuser         = client.user('memyselfandhai');
 var ghrepo         = client.repo('memyselfandhai/hub');
@@ -30,7 +21,9 @@ var ghnotification = client.notification(37);
 var ghsearch = client.search();
 
 
+// GITHUH REPOS
 // pulls all user repos, sorts by date, and returns the 5 most recently updated
+
 var repo_callback = function(err, data, headers) {
   // filter for only important stuff
   var repo_filter = ['name', 'description', 'updated_at']
@@ -43,23 +36,46 @@ var repo_callback = function(err, data, headers) {
   console.log("data: " + JSON.stringify(sorted.slice(0,5), repo_filter, 5));
   console.log("headers:" + headers);
 };
-
-// working!!
+//
+// // working!!
 ghuser.repos(repo_callback);
 
 
+// GITHUH STARS
 
 // pulls all starred user repos
-var starred_callback = function (err, data, headers) {
-  var repo_filter = ['name', 'description', 'updated_at']
-
-  console.log("error: " + err);
-  console.log("data: " + JSON.stringify(data, repo_filter, 5));
-  console.log("headers:" + headers);
-};
+// var starred_callback = function (err, data, headers) {
+//   var repo_filter = ['name', 'description', 'updated_at']
+//
+//   console.log("error: " + err);
+//   console.log("data: " + JSON.stringify(data, repo_filter, 5));
+//   console.log("headers:" + headers);
+// };
 
 // working!!
-ghme.starred(starred_callback)
+// ghme.starred(starred_callback)
+
+// starred callback v2, now with auth !
+var address = 'https://api.github.com/users/memyselfandhai/starred';
+var options = {
+  url: address,
+  headers: {
+    'User-Agent': 'request'
+  }
+};
+
+function callback(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    var info = JSON.parse(body);
+    info = JSON.stringify(info, ['name', 'description', 'updated_at'], 1)
+    console.log(info);
+  }
+}
+
+request(options, callback);
+
+
+// GITHUH PROFILE
 
 var info_callback = function (err, data, headers) {
   var profile_filter = ['email', 'public_repos', 'followers', 'following']
@@ -69,4 +85,4 @@ var info_callback = function (err, data, headers) {
 }
 
 //
-// ghuser.info(info_callback);
+ghuser.info(info_callback);
