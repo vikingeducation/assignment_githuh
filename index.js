@@ -2,12 +2,12 @@ var request = require('request')
 var github = require('octonode')
 var fs = require('fs')
 
-// var client = github.client();
+var client = github.client();
 
-var client = github.client({
-  username: 'memyselfandhai',
-  password: 'Nsx81717'
-});
+// var client = github.client({
+//   username: 'memyselfandhai',
+//   password: 'Nsx81717'
+// });
 
 // client.get('/users/memyselfandhai', {}, function (err, status, body, headers) {
 //   console.log(body); //json object
@@ -30,25 +30,43 @@ var ghnotification = client.notification(37);
 var ghsearch = client.search();
 
 
-
-var callback = function(err, data, headers) {
-  var repos = JSON.stringify(data, repo_filter, 1);
-  // repos = repos.split(",");
+// pulls all user repos, sorts by date, and returns the 5 most recently updated
+var repo_callback = function(err, data, headers) {
+  // filter for only important stuff
+  var repo_filter = ['name', 'description', 'updated_at']
+  // sorting returned JSON by updated_at key
   sorted = data.sort(function (a,b) {
-    return a.updated_at - b.updated_at;
+    return Date.parse(b.updated_at) - Date.parse(a.updated_at);
   })
-  console.log(sorted)
 
   console.log("error: " + err);
-  // console.log("data: " + JSON.stringify(data, repo_filter, 5));
+  console.log("data: " + JSON.stringify(sorted.slice(0,5), repo_filter, 5));
   console.log("headers:" + headers);
 };
 
+// working!!
+ghuser.repos(repo_callback);
 
-var repo_filter = ['name', 'description', 'updated_at']
 
-// ghme.repos(callback);
+
+// pulls all starred user repos
+var starred_callback = function (err, data, headers) {
+  var repo_filter = ['name', 'description', 'updated_at']
+
+  console.log("error: " + err);
+  console.log("data: " + JSON.stringify(data, repo_filter, 5));
+  console.log("headers:" + headers);
+};
+
+// working!!
+ghme.starred(starred_callback)
+
+var info_callback = function (err, data, headers) {
+  var profile_filter = ['email', 'public_repos', 'followers', 'following']
+  console.log("error: " + err);
+  console.log("data: " + JSON.stringify(data, profile_filter, 1));
+  console.log("headers:" + headers);
+}
+
 //
-
-
-ghuser.repos(callback);
+// ghuser.info(info_callback);
