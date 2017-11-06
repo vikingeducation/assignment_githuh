@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 'use strict';
 
 const request = require('request');
@@ -30,3 +31,24 @@ const attrArr = [
   'followers',
   'following'
 ];
+
+const data = process.argv[2];
+const user = process.argv[3];
+
+const caller = (data, user) => {
+  switch (data) {
+    case 'repos':
+      repos(user);
+      break;
+    case 'stars':
+      starred(user);
+      break;
+    case 'profile':
+      profile(user);
+      break;
+    default:
+      console.log('invalid data request');
+  }
+};
+
+caller(data, user);
