@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/memyselfandhai/assignment_githuh/issues"
   },
-  "homepage": "https://github.com/memyselfandhai/assignment_githuh#readme"
+  "homepage": "https://github.com/memyselfandhai/assignment_githuh#readme",
+  "dependencies": {
+    "commander": "^2.11.0"
+  }
 }

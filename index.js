@@ -1,27 +1,20 @@
 var request = require('request')
 var github = require('octonode')
 var fs = require('fs')
+var prompt = require('prompt');
 
 var client = github.client();
 
 var ghme           = client.me();
 var ghuser         = client.user('memyselfandhai');
 var ghrepo         = client.repo('memyselfandhai/hub');
-var ghorg          = client.org('flatiron');
-var ghissue        = client.issue('memyselfandhai/hub', 37);
-var ghmilestone    = client.milestone('memyselfandhai/hub', 37);
-var ghlabel        = client.label('memyselfandhai/hub', 'todo');
-var ghpr           = client.pr('memyselfandhai/hub', 37);
-var ghrelease      = client.release('memyselfandhai/hub', 37);
-var ghgist         = client.gist();
-var ghteam         = client.team(37);
-// var ghproject      = client.project('memyselfandhai/hub', 37);
-var ghnotification = client.notification(37);
-
-var ghsearch = client.search();
 
 
-// GITHUH REPOS
+//---------------------------------------
+//
+// GIT HUH RECENT REPOS
+//
+//---------------------------------------
 // pulls all user repos, sorts by date, and returns the 5 most recently updated
 
 var repo_callback = function(err, data, headers) {
@@ -38,10 +31,14 @@ var repo_callback = function(err, data, headers) {
 };
 //
 // // working!!
-ghuser.repos(repo_callback);
+// ghuser.repos(repo_callback);
 
 
-// GITHUH STARS
+//---------------------------------------
+//
+// GIT HUH STARRED REPOS
+//
+//---------------------------------------
 
 // pulls all starred user repos
 // var starred_callback = function (err, data, headers) {
@@ -72,17 +69,64 @@ function callback(error, response, body) {
   }
 }
 
-request(options, callback);
+// working!!
+// request(options, callback);
 
 
+//---------------------------------------
+//
 // GITHUH PROFILE
+//
+//---------------------------------------
 
 var info_callback = function (err, data, headers) {
   var profile_filter = ['email', 'public_repos', 'followers', 'following']
-  console.log("error: " + err);
   console.log("data: " + JSON.stringify(data, profile_filter, 1));
-  console.log("headers:" + headers);
 }
 
+// working!!
+// ghuser.info(info_callback);
+
+//---------------------------------------
 //
-ghuser.info(info_callback);
+// GITHUH ORGANIZATIONS
+//
+//---------------------------------------
+
+var org_callback = (err, data, headers) => {
+  if (data.length === 0) {
+    console.log("0 organizations =(")
+  } else {
+    console.log(data)}
+}
+
+//---------------------------------------
+//
+// CLI BITS
+//
+//---------------------------------------
+
+prompt.start();
+
+ //
+ // Get two properties from the user: username and email
+ //
+ console.log("You have 3 options for requests: repos, starred, info, orgs")
+ prompt.get(['github', 'request'], function (err, result) {
+   if (result.request === 'info') {
+         client.user(result.github).info(info_callback)
+   } else if (result.request === 'starred') {
+          var address = `https://api.github.com/users/${result.githubSeeker}/starred`;
+          var options = {
+              url: address,
+              headers: {
+                'User-Agent': 'request'
+              }
+            };
+          request(options, callback);
+    } else if (result.request === 'repos') {
+       client.user(result.github).repos(repo_callback)
+    } else if (result.request === 'orgs') {
+       client.user(result.github).orgs(org_callback)
+    }
+  });
