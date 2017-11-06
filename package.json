@@ -1,0 +1,25 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "API Command Line Interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seeker0/assignment_githuh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "githuh": "./app.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Seeker0/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/Seeker0/assignment_githuh#readme",
+  "dependencies": {
+    "request": "^2.83.0"
+  }
+}
