@@ -6,33 +6,27 @@ const gitHuh = request.defaults({
 });
 const baseUri = 'https://api.github.com/users';
 
-let gettingGit = function() {
-  this.url = `${baseUri}`;
-  this.repos = user => {
-    this.url = `${baseUri}/${user}/repos`;
-    return this.gitGet(obj => console.log(obj['name']));
-  };
-  this.starred = user => {
-    this.url = `${baseUri}/${user}/starred`;
-    return this.gitGet(val => console.log(val.name));
-  };
-  this.profile = user => {
-    this.url = `${baseUri}/${user}`;
-    return this.gitGet(val => console.log(Object.entries(val)));
-  };
-  this.gitGet = callback => {
-    gitHuh.get(this.url, (error, response, body) => {
-      if (error) {
-        console.error(error);
-      }
-      let data = JSON.parse(body);
-      console.log(response.statusCode);
-      for (let key in data) {
-        callback(data[key]);
-      }
-    });
-  };
+const repos = user => gitGet(printNames, `${baseUri}/${user}/repos`);
+const starred = user => gitGet(printNames, `${baseUri}/${user}/starred`);
+const profile = user => gitGet(printAttr, `${baseUri}/${user}`);
+const gitGet = (callback, url) => {
+  gitHuh.get(url, (error, response, body) => {
+    if (error) {
+      console.error(error);
+    }
+    callback(JSON.parse(body));
+  });
 };
-
-let getGit = new gettingGit();
-getGit.profile('Seeker0');
+const printNames = repoArr => repoArr.forEach(repo => console.log(repo.name));
+//email, public repos, follower, following count, name, blog
+const printAttr = obj =>
+  attrArr.forEach(val => console.log(`${val}: ${obj[val]}`));
+const attrArr = [
+  'name',
+  'email',
+  'bio',
+  'blog',
+  'public_repos',
+  'followers',
+  'following'
+];
