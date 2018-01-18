@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ksc23/assignment_githuh#readme",
   "dependencies": {
+    "commander": "^2.13.0",
     "request": "^2.83.0"
   }
 }
