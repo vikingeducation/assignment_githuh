@@ -1,8 +1,4 @@
 const request = require('request');
-const baseUri = 'https://api.github.com';
-
-const username = process.argv[3];
-const type = process.argv[2];
 
 function GitWrapper() {
   
@@ -44,6 +40,5 @@ function GitWrapper() {
 
 };
 
-const githuh = new GitWrapper();
 
-module.exports = githuh;
+module.exports = GitWrapper;

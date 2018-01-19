@@ -3,7 +3,9 @@
 'use strict';
 
 const program = require('commander');
-const githuh = require('./gitwrapper');
+const gitwrapper = require('./gitwrapper');
+
+const githuh = new gitwrapper();
 
 program
   .version('1.0.0')
