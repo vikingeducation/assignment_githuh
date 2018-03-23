@@ -1,0 +1,27 @@
+{
+  "name": "assignment_githuh",
+  "version": "1.0.0",
+  "description": "Build a Command Line Interface for getting information on GitHub users' accounts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coelacanth7/assignment_githuh.git"
+  },
+  "author": "Gregory Alford",
+  "license": "ISC",
+  "bin": {
+    "githuh": "./index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/coelacanth7/assignment_githuh/issues"
+  },
+  "homepage": "https://github.com/coelacanth7/assignment_githuh#readme",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "request": "^2.81.0",
+    "sandbox": "^0.8.6"
+  }
+}
