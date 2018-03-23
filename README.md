@@ -1,4 +1,4 @@
-# assignment_githuh
-Build a Command Line Interface for getting information on GitHub users' accounts.
+# githuh
 
-Gregory Alford
+
+This was a CLI tool for github data, but it no longer works
